@@ -17,7 +17,3 @@ app.get('/', (req, res) => { res.render('index', (err, html) => {
     }
   })
 })
-
-app.listen(3000, () => {
-  console.log('El servidor está siendo escuchado en el puerto 3000')
-})
