@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/about', (req, res) => {
-    res.render('about', { title: 'Nosotros' });
+    res.render('nosotros', { title: 'Nosotros' });
 });
 
 router.get('/tienda', (req, res) => {
@@ -30,6 +30,9 @@ router.get('/gallery', (req, res) => {
     res.render('gallery', { title: 'gallery' });
 });
 
+router.get('/productos', (req, res) => {
+    res.render('productos', { title: 'productos' });
+});
 router.get('/api/get-productos', async (req, res) => {
     try {
         const productos = await ConsultarProductos();

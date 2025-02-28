@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body>
+    <%- include('partials/navigation') %>
+        <h1>Productos</h1>
+        <div id="mostarproductos"></div>
+        <script>
+            async function getproductos() {
+                try {
+                    const response = await fetch('http://localhost:3000/api/get-productos', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    const productos = await response.json();
+                    const mostrarProductosDiv = document.getElementById('mostarproductos');
+                    productos.forEach(producto => {
+                        const productoDiv = document.createElement('div');
+                        productoDiv.innerHTML = `
+                <h3>${producto.titulo}</h3>
+                <p>${producto.descripcion}</p>
+                <img src="${producto.url}" alt="${producto.titulo}">
+            `;
+                        mostrarProductosDiv.appendChild(productoDiv);
+                    });
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+
+            getproductos();
+
+        </script>
+
+
+
+</body>
+
+</html>
